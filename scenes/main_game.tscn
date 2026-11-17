@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://dxqbunsijvtbt"]
+
+[ext_resource type="Script" uid="uid://dpns838ffmqyw" path="res://scripts/main_game.gd" id="1_s3esy"]
+[ext_resource type="Texture2D" uid="uid://chmygsw7ytwnj" path="res://assets/New Backgroud.png" id="2_d2op2"]
+[ext_resource type="Texture2D" uid="uid://big0qwjv01t33" path="res://assets/Rocket.png" id="3_0rdsr"]
+[ext_resource type="FontFile" uid="uid://cwd6h2f8vc1qf" path="res://assets/fonts/Quantico-Bold.ttf" id="4_0rdsr"]
+
+[sub_resource type="Gradient" id="Gradient_xgy4w"]
+colors = PackedColorArray(1, 0, 0, 1, 1, 1, 0, 1)
+
+[node name="Main Game" type="Node2D" unique_id=541122872]
+script = ExtResource("1_s3esy")
+
+[node name="Canvas" type="CanvasLayer" parent="." unique_id=789875663]
+
+[node name="Background" type="Sprite2D" parent="Canvas" unique_id=435135295]
+position = Vector2(320, -540)
+texture = ExtResource("2_d2op2")
+
+[node name="Rocket" type="TextureButton" parent="Canvas" unique_id=1862961473]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -64.0
+offset_right = 40.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("3_0rdsr")
+stretch_mode = 0
+
+[node name="Rocket Particles" type="CPUParticles2D" parent="Canvas/Rocket" unique_id=258744830]
+position = Vector2(40, 126)
+emitting = false
+amount = 20
+lifetime = 0.5
+one_shot = true
+emission_shape = 3
+emission_rect_extents = Vector2(40, 1)
+color = Color(1, 0, 0, 1)
+color_ramp = SubResource("Gradient_xgy4w")
+
+[node name="Score" type="RichTextLabel" parent="Canvas" unique_id=485048711]
+offset_left = 7.0
+offset_top = 23.0
+offset_right = 219.0
+offset_bottom = 74.0
+theme_override_fonts/normal_font = ExtResource("4_0rdsr")
+theme_override_font_sizes/normal_font_size = 32
+text = "0"
+vertical_alignment = 1
+
+[node name="Score Header" type="RichTextLabel" parent="Canvas" unique_id=1432013059]
+offset_left = 7.0
+offset_top = 7.0
+offset_right = 55.0
+offset_bottom = 25.0
+theme_override_fonts/normal_font = ExtResource("4_0rdsr")
+theme_override_font_sizes/normal_font_size = 12
+text = "SCORE"
+vertical_alignment = 1
+
+[connection signal="button_down" from="Canvas/Rocket" to="." method="_on_rocket_button_down"]
+[connection signal="button_up" from="Canvas/Rocket" to="." method="_on_rocket_button_up"]
