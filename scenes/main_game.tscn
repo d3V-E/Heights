@@ -8,31 +8,150 @@
 [sub_resource type="Gradient" id="Gradient_xgy4w"]
 colors = PackedColorArray(1, 0, 0, 1, 1, 1, 0, 1)
 
+[sub_resource type="Animation" id="Animation_0rdsr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Zoom/Background:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(320, -540)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Zoom/Rocket:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(280, 116)]
+}
+
+[sub_resource type="Animation" id="Animation_2l77h"]
+resource_name = "Rebirth"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Zoom/Rocket:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(280, 116), Vector2(280, -180)]
+}
+
+[sub_resource type="Animation" id="Animation_ipu61"]
+resource_name = "Stage 1"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Zoom/Background:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(320, -540), Vector2(320, -180)]
+}
+
+[sub_resource type="Animation" id="Animation_ygxny"]
+resource_name = "Stage 2"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Zoom/Background:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(320, -180), Vector2(320, 180)]
+}
+
+[sub_resource type="Animation" id="Animation_wi4c7"]
+resource_name = "Stage 3"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Zoom/Background:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(320, 180), Vector2(320, 540)]
+}
+
+[sub_resource type="Animation" id="Animation_70vka"]
+resource_name = "Stage 4"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Zoom/Background:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(320, 540), Vector2(320, 900)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ygxny"]
+_data = {
+&"RESET": SubResource("Animation_0rdsr"),
+&"Rebirth": SubResource("Animation_2l77h"),
+&"Stage 1": SubResource("Animation_ipu61"),
+&"Stage 2": SubResource("Animation_ygxny"),
+&"Stage 3": SubResource("Animation_wi4c7"),
+&"Stage 4": SubResource("Animation_70vka")
+}
+
 [node name="Main Game" type="Node2D" unique_id=541122872]
 script = ExtResource("1_s3esy")
 
-[node name="Canvas" type="CanvasLayer" parent="." unique_id=789875663]
+[node name="Zoom" type="Camera2D" parent="." unique_id=2107486013]
+limit_left = 0
+limit_top = 0
+limit_right = 640
+limit_bottom = 360
+position_smoothing_enabled = true
+rotation_smoothing_enabled = true
+editor_draw_limits = true
 
-[node name="Background" type="Sprite2D" parent="Canvas" unique_id=435135295]
+[node name="Background" type="Sprite2D" parent="Zoom" unique_id=435135295]
 position = Vector2(320, -540)
 texture = ExtResource("2_d2op2")
 
-[node name="Rocket" type="TextureButton" parent="Canvas" unique_id=1862961473]
+[node name="Rocket" type="TextureButton" parent="Zoom" unique_id=1862961473]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -40.0
-offset_top = -64.0
-offset_right = 40.0
-offset_bottom = 64.0
+offset_left = 280.0
+offset_top = 116.0
+offset_right = 360.0
+offset_bottom = 243.99998
 grow_horizontal = 2
 grow_vertical = 2
 texture_normal = ExtResource("3_0rdsr")
 stretch_mode = 0
 
-[node name="Rocket Particles" type="CPUParticles2D" parent="Canvas/Rocket" unique_id=258744830]
+[node name="Rocket Particles" type="CPUParticles2D" parent="Zoom/Rocket" unique_id=258744830]
 position = Vector2(40, 126)
 emitting = false
 amount = 20
@@ -43,7 +162,7 @@ emission_rect_extents = Vector2(40, 1)
 color = Color(1, 0, 0, 1)
 color_ramp = SubResource("Gradient_xgy4w")
 
-[node name="Score" type="RichTextLabel" parent="Canvas" unique_id=485048711]
+[node name="Score" type="RichTextLabel" parent="Zoom" unique_id=485048711]
 offset_left = 7.0
 offset_top = 23.0
 offset_right = 219.0
@@ -53,7 +172,7 @@ theme_override_font_sizes/normal_font_size = 32
 text = "0"
 vertical_alignment = 1
 
-[node name="Score Header" type="RichTextLabel" parent="Canvas" unique_id=1432013059]
+[node name="Score Header" type="RichTextLabel" parent="Zoom" unique_id=1432013059]
 offset_left = 7.0
 offset_top = 7.0
 offset_right = 55.0
@@ -63,5 +182,14 @@ theme_override_font_sizes/normal_font_size = 12
 text = "SCORE"
 vertical_alignment = 1
 
-[connection signal="button_down" from="Canvas/Rocket" to="." method="_on_rocket_button_down"]
-[connection signal="button_up" from="Canvas/Rocket" to="." method="_on_rocket_button_up"]
+[node name="Canvas" type="CanvasLayer" parent="." unique_id=789875663]
+
+[node name="Animation" type="AnimationPlayer" parent="Canvas" unique_id=2105757530]
+libraries/ = SubResource("AnimationLibrary_ygxny")
+
+[node name="Save" type="Timer" parent="Canvas" unique_id=287057805]
+autostart = true
+
+[connection signal="button_down" from="Zoom/Rocket" to="." method="_on_rocket_button_down"]
+[connection signal="button_up" from="Zoom/Rocket" to="." method="_on_rocket_button_up"]
+[connection signal="timeout" from="Canvas/Save" to="." method="_on_save_timeout"]
