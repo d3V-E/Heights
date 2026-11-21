@@ -208,10 +208,11 @@ func _on_confirm_button_up():
 	var tween = get_tree().create_tween()
 	tween.tween_property(confreb , "scale" , Vector2(1 , 1) , .1)
 	hideui()
-	rebparticles.emitting = true
-	backgroundanim.play("Rebirth")
-	await get_tree().create_timer(1).timeout
-	rebparticles.emitting = false
+	if score >= requirement:
+		rebparticles.emitting = true
+		backgroundanim.play("Rebirth")
+		await get_tree().create_timer(1).timeout
+		rebparticles.emitting = false
 
 func showui():
 	reb.visible = true
@@ -220,3 +221,13 @@ func showui():
 func hideui():
 	reb.visible = false
 	rebmenu.visible = false
+
+
+func rebirthtrue():
+	rebirth += 1
+	score = 0
+	multiplier = (multiplier *2)
+	emit_signal("score_changed")
+	emit_signal("rebirth_changed")
+	emit_signal("multiplier_changed")
+	save_data()
