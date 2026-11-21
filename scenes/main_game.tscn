@@ -4,6 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://chmygsw7ytwnj" path="res://assets/New Backgroud.png" id="2_d2op2"]
 [ext_resource type="Texture2D" uid="uid://big0qwjv01t33" path="res://assets/Rocket.png" id="3_0rdsr"]
 [ext_resource type="FontFile" uid="uid://cwd6h2f8vc1qf" path="res://assets/fonts/Quantico-Bold.ttf" id="4_0rdsr"]
+[ext_resource type="Texture2D" uid="uid://da0gw6oqfoq4g" path="res://assets/Rebirth.png" id="5_ipu61"]
+[ext_resource type="Texture2D" uid="uid://b0rirmcewpdq" path="res://assets/Convert.png" id="6_wi4c7"]
+[ext_resource type="Texture2D" uid="uid://dk0ynqlxervih" path="res://assets/Close.png" id="7_70vka"]
+[ext_resource type="Texture2D" uid="uid://c5hsvpdpiut4j" path="res://assets/Green button.png" id="8_70vka"]
 
 [sub_resource type="Gradient" id="Gradient_xgy4w"]
 colors = PackedColorArray(1, 0, 0, 1, 1, 1, 0, 1)
@@ -128,6 +132,7 @@ limit_left = 0
 limit_top = 0
 limit_right = 640
 limit_bottom = 360
+limit_smoothed = true
 position_smoothing_enabled = true
 rotation_smoothing_enabled = true
 editor_draw_limits = true
@@ -145,7 +150,7 @@ anchor_bottom = 0.5
 offset_left = 280.0
 offset_top = 116.0
 offset_right = 360.0
-offset_bottom = 243.99998
+offset_bottom = 243.99992
 grow_horizontal = 2
 grow_vertical = 2
 texture_normal = ExtResource("3_0rdsr")
@@ -161,6 +166,13 @@ emission_shape = 3
 emission_rect_extents = Vector2(40, 1)
 color = Color(1, 0, 0, 1)
 color_ramp = SubResource("Gradient_xgy4w")
+
+[node name="Rebirth Particles" type="CPUParticles2D" parent="Zoom/Rocket" unique_id=1372306011]
+position = Vector2(40, 125)
+emitting = false
+amount = 25
+emission_shape = 3
+emission_rect_extents = Vector2(40, 1)
 
 [node name="Score" type="RichTextLabel" parent="Zoom" unique_id=485048711]
 offset_left = 7.0
@@ -190,6 +202,69 @@ libraries/ = SubResource("AnimationLibrary_ygxny")
 [node name="Save" type="Timer" parent="Canvas" unique_id=287057805]
 autostart = true
 
+[node name="Rebirth" type="TextureButton" parent="Canvas" unique_id=1646094750]
+offset_left = 8.0
+offset_top = 303.0
+offset_right = 56.0
+offset_bottom = 351.0
+texture_normal = ExtResource("5_ipu61")
+stretch_mode = 0
+
+[node name="Rebirth Menu" type="Sprite2D" parent="Canvas" unique_id=1053659640]
+position = Vector2(326.00003, 172)
+scale = Vector2(0.43500006, 0.43500003)
+texture = ExtResource("6_wi4c7")
+
+[node name="Close Rebirth" type="TextureButton" parent="Canvas/Rebirth Menu" unique_id=532422603]
+offset_left = 301.14923
+offset_top = -280.45978
+offset_right = 379.12628
+offset_bottom = -202.48273
+texture_normal = ExtResource("7_70vka")
+stretch_mode = 0
+
+[node name="Confirm" type="TextureButton" parent="Canvas/Rebirth Menu" unique_id=906920684]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -533.7143
+offset_top = -412.64355
+offset_right = -266.2857
+offset_bottom = -322.9884
+grow_horizontal = 2
+grow_vertical = 0
+texture_normal = ExtResource("8_70vka")
+stretch_mode = 0
+
+[node name="Rebirth Header" type="RichTextLabel" parent="Canvas/Rebirth Menu" unique_id=708590919]
+offset_left = -374.71268
+offset_top = -275.86203
+offset_right = -64.36789
+offset_bottom = -209.19537
+theme_override_font_sizes/normal_font_size = 44
+text = "REBIRTH"
+
+[node name="Info" type="RichTextLabel" parent="Canvas/Rebirth Menu" unique_id=1454495539]
+offset_left = -367.81616
+offset_top = -167.81607
+offset_right = 365.5171
+offset_bottom = 147.12643
+theme_override_font_sizes/normal_font_size = 24
+text = "SCORE = 
+REQUIREMENT = 
+REQUIREMENT IS MET
+MULTIPLIER = 
+INCREASED MULTIPLIER = 
+"
+
 [connection signal="button_down" from="Zoom/Rocket" to="." method="_on_rocket_button_down"]
 [connection signal="button_up" from="Zoom/Rocket" to="." method="_on_rocket_button_up"]
 [connection signal="timeout" from="Canvas/Save" to="." method="_on_save_timeout"]
+[connection signal="button_down" from="Canvas/Rebirth" to="." method="_on_rebirth_button_down"]
+[connection signal="button_up" from="Canvas/Rebirth" to="." method="_on_rebirth_button_up"]
+[connection signal="button_down" from="Canvas/Rebirth Menu/Close Rebirth" to="." method="_on_close_rebirth_button_down"]
+[connection signal="button_up" from="Canvas/Rebirth Menu/Close Rebirth" to="." method="_on_close_rebirth_button_up"]
+[connection signal="button_down" from="Canvas/Rebirth Menu/Confirm" to="." method="_on_confirm_button_down"]
+[connection signal="button_up" from="Canvas/Rebirth Menu/Confirm" to="." method="_on_confirm_button_up"]
