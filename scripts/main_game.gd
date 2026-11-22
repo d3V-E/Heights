@@ -17,9 +17,16 @@ var clicksrng = {"normal" = 1000,
 				"normal2" = 250,
 				"normal3" = 10}
 var rngnum = RandomNumberGenerator.new()
-
-
-
+var randomevent = {"pass" = 10000,
+					"balance" = 100,}
+var eventnum = RandomNumberGenerator.new()
+var minecount = 0
+var minecorrect = 0
+var minewrong = 0
+var mine = ""
+var minecounter = {"SAFE" : 40 , 
+					"DANGER" : 10}
+var minerng = RandomNumberGenerator.new()
 
 @onready var click : TextureButton = $Zoom/Rocket
 @onready var rocketparticles : CPUParticles2D = $"Zoom/Rocket/Rocket Particles"
@@ -30,7 +37,7 @@ var rngnum = RandomNumberGenerator.new()
 @onready var rebclose : TextureButton = $"Canvas/Rebirth Menu/Close Rebirth"
 @onready var confreb :TextureButton = $"Canvas/Rebirth Menu/Confirm"
 @onready var rebparticles:CPUParticles2D = $"Zoom/Rocket/Rebirth Particles"
-
+@onready var canvass = $CanvasM/Backdrop
 
 func clickchance():
 	rngnum.randomize()
@@ -47,6 +54,23 @@ func clickchance():
 			return i
 		item -= clicksrng[i]
 	return "normal"
+
+func getrandomevent():
+	eventnum.randomize()
+	
+	var y = 0
+	for t in randomevent:
+		y += randomevent[t]
+	
+	
+	var item1 = eventnum.randi_range(0 , y)
+	
+	for t in randomevent:
+		if item1 <= randomevent[t]:
+			return t
+		item1 -= randomevent[t]
+	return "pass"
+
 
 const save_path = "user://userdata.savefiles"
 
@@ -89,6 +113,11 @@ func _ready():
 	load_data()
 	click.pivot_offset = click.size / 2
 	$Zoom/Score.text = str(score)
+	for c in canvass.get_children():
+		if c is Button:
+			c.pivot_offset = c.size / 2
+			c.button_down.connect(_on_any_button_down.bind(c))
+			c.button_up.connect(_on_any_button_up.bind(c))
 
 
 
@@ -160,6 +189,7 @@ func _on_rebirth_button_down():
 
 func _on_rebirth_button_up():
 	var tween = get_tree().create_tween()
+	$"Canvas/Rebirth Menu/Rebirth Count".text = str(rebirth)
 	tween.tween_property(reb , "scale" , Vector2(1 , 1) , .1)
 	rebmenu.visible = true
 	reb.visible = false
@@ -231,3 +261,44 @@ func rebirthtrue():
 	emit_signal("rebirth_changed")
 	emit_signal("multiplier_changed")
 	save_data()
+
+
+
+
+
+
+func _on_any_button_down(op: Button):
+	var tween = create_tween()
+	tween.tween_property(op, "scale", Vector2(.9, .9), .1)
+
+func _on_any_button_up(op: Button):
+	var tween = create_tween()
+	tween.tween_property(op, "scale", Vector2(1, 1), .1)
+	
+	mine = get_mines()
+	
+	if mine == "SAFE":
+		op.text = "SAFE"
+		minecorrect += 1
+	else:
+		op.text = "MINE"
+		minewrong += 1
+	op.disabled = true
+
+
+func get_mines():
+	minerng.randomize()
+	
+	var te = 0
+	
+	for k in minecounter:
+		te -= minecounter[k]
+	
+	var itemlot = minerng.randi_range(1 , te)
+	
+	var check = 0
+	for k in minecounter:
+		check += minecounter[k]
+		if itemlot <= check:
+			return k
+	return "SAFE"

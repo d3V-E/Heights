@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://b0rirmcewpdq" path="res://assets/Convert.png" id="6_wi4c7"]
 [ext_resource type="Texture2D" uid="uid://dk0ynqlxervih" path="res://assets/Close.png" id="7_70vka"]
 [ext_resource type="Texture2D" uid="uid://c5hsvpdpiut4j" path="res://assets/Green button.png" id="8_70vka"]
+[ext_resource type="Texture2D" uid="uid://ciuqqr6qnvfms" path="res://assets/Backdrop.png" id="9_2l77h"]
 
 [sub_resource type="Gradient" id="Gradient_xgy4w"]
 colors = PackedColorArray(1, 0, 0, 1, 1, 1, 0, 1)
@@ -124,6 +125,8 @@ _data = {
 &"Stage 4": SubResource("Animation_70vka")
 }
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kdbn0"]
+
 [node name="Main Game" type="Node2D" unique_id=541122872]
 script = ExtResource("1_s3esy")
 
@@ -211,6 +214,7 @@ texture_normal = ExtResource("5_ipu61")
 stretch_mode = 0
 
 [node name="Rebirth Menu" type="Sprite2D" parent="Canvas" unique_id=1053659640]
+visible = false
 position = Vector2(326.00003, 172)
 scale = Vector2(0.43500006, 0.43500003)
 texture = ExtResource("6_wi4c7")
@@ -258,6 +262,422 @@ REQUIREMENT IS MET
 MULTIPLIER = 
 INCREASED MULTIPLIER = 
 "
+
+[node name="Rebirth Count" type="RichTextLabel" parent="Canvas/Rebirth Menu" unique_id=884418427]
+offset_left = 82.758575
+offset_top = -280.45975
+offset_right = 297.47116
+offset_bottom = -204.59769
+theme_override_font_sizes/normal_font_size = 40
+text = "0"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="CanvasM" type="CanvasLayer" parent="." unique_id=1732199049]
+
+[node name="Backdrop" type="Sprite2D" parent="CanvasM" unique_id=1801244576]
+position = Vector2(320, 180)
+texture = ExtResource("9_2l77h")
+
+[node name="Button" type="Button" parent="CanvasM/Backdrop" unique_id=863805177]
+offset_left = -207.0
+offset_top = -100.0
+offset_right = -167.0
+offset_bottom = -60.0
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_kdbn0")
+
+[node name="Button2" type="Button" parent="CanvasM/Backdrop" unique_id=647667291]
+offset_left = -166.0
+offset_top = -100.0
+offset_right = -126.0
+offset_bottom = -60.0
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_kdbn0")
+
+[node name="Button3" type="Button" parent="CanvasM/Backdrop" unique_id=815934255]
+offset_left = -125.0
+offset_top = -100.0
+offset_right = -85.0
+offset_bottom = -60.0
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_kdbn0")
+
+[node name="Button4" type="Button" parent="CanvasM/Backdrop" unique_id=184030037]
+offset_left = -84.0
+offset_top = -100.0
+offset_right = -44.0
+offset_bottom = -60.0
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_kdbn0")
+
+[node name="Button5" type="Button" parent="CanvasM/Backdrop" unique_id=1480338474]
+offset_left = -43.0
+offset_top = -100.0
+offset_right = -3.0
+offset_bottom = -60.0
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_kdbn0")
+
+[node name="Button6" type="Button" parent="CanvasM/Backdrop" unique_id=917180125]
+offset_left = -2.0
+offset_top = -100.0
+offset_right = 38.0
+offset_bottom = -60.0
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_kdbn0")
+
+[node name="Button7" type="Button" parent="CanvasM/Backdrop" unique_id=331730893]
+offset_left = 39.0
+offset_top = -100.0
+offset_right = 79.0
+offset_bottom = -60.0
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_kdbn0")
+
+[node name="Button8" type="Button" parent="CanvasM/Backdrop" unique_id=454421128]
+offset_left = 80.0
+offset_top = -100.0
+offset_right = 120.0
+offset_bottom = -60.0
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_kdbn0")
+
+[node name="Button9" type="Button" parent="CanvasM/Backdrop" unique_id=1542658155]
+offset_left = 121.0
+offset_top = -100.0
+offset_right = 161.0
+offset_bottom = -60.0
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_kdbn0")
+
+[node name="Button10" type="Button" parent="CanvasM/Backdrop" unique_id=1772977708]
+offset_left = 162.0
+offset_top = -100.0
+offset_right = 202.0
+offset_bottom = -60.0
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_kdbn0")
+
+[node name="Button11" type="Button" parent="CanvasM/Backdrop" unique_id=43224137]
+offset_left = -207.0
+offset_top = -59.0
+offset_right = -167.0
+offset_bottom = -19.0
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_kdbn0")
+
+[node name="Button12" type="Button" parent="CanvasM/Backdrop" unique_id=2072067569]
+offset_left = -166.0
+offset_top = -59.0
+offset_right = -126.0
+offset_bottom = -19.0
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_kdbn0")
+
+[node name="Button13" type="Button" parent="CanvasM/Backdrop" unique_id=601031319]
+offset_left = -125.0
+offset_top = -59.0
+offset_right = -85.0
+offset_bottom = -19.0
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_kdbn0")
+
+[node name="Button14" type="Button" parent="CanvasM/Backdrop" unique_id=560495425]
+offset_left = -84.0
+offset_top = -59.0
+offset_right = -44.0
+offset_bottom = -19.0
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_kdbn0")
+
+[node name="Button15" type="Button" parent="CanvasM/Backdrop" unique_id=602953763]
+offset_left = -43.0
+offset_top = -59.0
+offset_right = -3.0
+offset_bottom = -19.0
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_kdbn0")
+
+[node name="Button16" type="Button" parent="CanvasM/Backdrop" unique_id=1296311337]
+offset_left = -2.0
+offset_top = -59.0
+offset_right = 38.0
+offset_bottom = -19.0
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_kdbn0")
+
+[node name="Button17" type="Button" parent="CanvasM/Backdrop" unique_id=331501622]
+offset_left = 39.0
+offset_top = -59.0
+offset_right = 79.0
+offset_bottom = -19.0
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_kdbn0")
+
+[node name="Button18" type="Button" parent="CanvasM/Backdrop" unique_id=1548896585]
+offset_left = 80.0
+offset_top = -59.0
+offset_right = 120.0
+offset_bottom = -19.0
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_kdbn0")
+
+[node name="Button19" type="Button" parent="CanvasM/Backdrop" unique_id=593886294]
+offset_left = 121.0
+offset_top = -59.0
+offset_right = 161.0
+offset_bottom = -19.0
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_kdbn0")
+
+[node name="Button20" type="Button" parent="CanvasM/Backdrop" unique_id=552666970]
+offset_left = 162.0
+offset_top = -59.0
+offset_right = 202.0
+offset_bottom = -19.0
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_kdbn0")
+
+[node name="Button21" type="Button" parent="CanvasM/Backdrop" unique_id=449173151]
+offset_left = -207.0
+offset_top = -18.0
+offset_right = -167.0
+offset_bottom = 22.0
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_kdbn0")
+
+[node name="Button22" type="Button" parent="CanvasM/Backdrop" unique_id=1214551949]
+offset_left = -166.0
+offset_top = -18.0
+offset_right = -126.0
+offset_bottom = 22.0
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_kdbn0")
+
+[node name="Button23" type="Button" parent="CanvasM/Backdrop" unique_id=1504606528]
+offset_left = -125.0
+offset_top = -18.0
+offset_right = -85.0
+offset_bottom = 22.0
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_kdbn0")
+
+[node name="Button24" type="Button" parent="CanvasM/Backdrop" unique_id=290038148]
+offset_left = -84.0
+offset_top = -18.0
+offset_right = -44.0
+offset_bottom = 22.0
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_kdbn0")
+
+[node name="Button25" type="Button" parent="CanvasM/Backdrop" unique_id=972217590]
+offset_left = -43.0
+offset_top = -18.0
+offset_right = -3.0
+offset_bottom = 22.0
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_kdbn0")
+
+[node name="Button26" type="Button" parent="CanvasM/Backdrop" unique_id=886737522]
+offset_left = -2.0
+offset_top = -18.0
+offset_right = 38.0
+offset_bottom = 22.0
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_kdbn0")
+
+[node name="Button27" type="Button" parent="CanvasM/Backdrop" unique_id=1328939682]
+offset_left = 39.0
+offset_top = -18.0
+offset_right = 79.0
+offset_bottom = 22.0
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_kdbn0")
+
+[node name="Button28" type="Button" parent="CanvasM/Backdrop" unique_id=2079769450]
+offset_left = 80.0
+offset_top = -18.0
+offset_right = 120.0
+offset_bottom = 22.0
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_kdbn0")
+
+[node name="Button29" type="Button" parent="CanvasM/Backdrop" unique_id=1900849352]
+offset_left = 121.0
+offset_top = -18.0
+offset_right = 161.0
+offset_bottom = 22.0
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_kdbn0")
+
+[node name="Button30" type="Button" parent="CanvasM/Backdrop" unique_id=935643538]
+offset_left = 162.0
+offset_top = -18.0
+offset_right = 202.0
+offset_bottom = 22.0
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_kdbn0")
+
+[node name="Button31" type="Button" parent="CanvasM/Backdrop" unique_id=168148822]
+offset_left = -207.0
+offset_top = 23.0
+offset_right = -167.0
+offset_bottom = 63.0
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_kdbn0")
+
+[node name="Button32" type="Button" parent="CanvasM/Backdrop" unique_id=1726358513]
+offset_left = -166.0
+offset_top = 23.0
+offset_right = -126.0
+offset_bottom = 63.0
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_kdbn0")
+
+[node name="Button33" type="Button" parent="CanvasM/Backdrop" unique_id=397707369]
+offset_left = -125.0
+offset_top = 23.0
+offset_right = -85.0
+offset_bottom = 63.0
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_kdbn0")
+
+[node name="Button34" type="Button" parent="CanvasM/Backdrop" unique_id=821033387]
+offset_left = -84.0
+offset_top = 23.0
+offset_right = -44.0
+offset_bottom = 63.0
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_kdbn0")
+
+[node name="Button35" type="Button" parent="CanvasM/Backdrop" unique_id=940316652]
+offset_left = -43.0
+offset_top = 23.0
+offset_right = -3.0
+offset_bottom = 63.0
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_kdbn0")
+
+[node name="Button36" type="Button" parent="CanvasM/Backdrop" unique_id=1802468115]
+offset_left = -2.0
+offset_top = 23.0
+offset_right = 38.0
+offset_bottom = 63.0
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_kdbn0")
+
+[node name="Button37" type="Button" parent="CanvasM/Backdrop" unique_id=1991742327]
+offset_left = 39.0
+offset_top = 23.0
+offset_right = 79.0
+offset_bottom = 63.0
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_kdbn0")
+
+[node name="Button38" type="Button" parent="CanvasM/Backdrop" unique_id=669525847]
+offset_left = 80.0
+offset_top = 23.0
+offset_right = 120.0
+offset_bottom = 63.0
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_kdbn0")
+
+[node name="Button39" type="Button" parent="CanvasM/Backdrop" unique_id=2012517943]
+offset_left = 121.0
+offset_top = 23.0
+offset_right = 161.0
+offset_bottom = 63.0
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_kdbn0")
+
+[node name="Button40" type="Button" parent="CanvasM/Backdrop" unique_id=431242386]
+offset_left = 162.0
+offset_top = 23.0
+offset_right = 202.0
+offset_bottom = 63.0
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_kdbn0")
+
+[node name="Button41" type="Button" parent="CanvasM/Backdrop" unique_id=23615476]
+offset_left = -207.0
+offset_top = 64.0
+offset_right = -167.0
+offset_bottom = 104.0
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_kdbn0")
+
+[node name="Button42" type="Button" parent="CanvasM/Backdrop" unique_id=158645720]
+offset_left = -166.0
+offset_top = 64.0
+offset_right = -126.0
+offset_bottom = 104.0
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_kdbn0")
+
+[node name="Button43" type="Button" parent="CanvasM/Backdrop" unique_id=762396800]
+offset_left = -125.0
+offset_top = 64.0
+offset_right = -85.0
+offset_bottom = 104.0
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_kdbn0")
+
+[node name="Button44" type="Button" parent="CanvasM/Backdrop" unique_id=1819268249]
+offset_left = -84.0
+offset_top = 64.0
+offset_right = -44.0
+offset_bottom = 104.0
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_kdbn0")
+
+[node name="Button45" type="Button" parent="CanvasM/Backdrop" unique_id=1533859612]
+offset_left = -43.0
+offset_top = 64.0
+offset_right = -3.0
+offset_bottom = 104.0
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_kdbn0")
+
+[node name="Button46" type="Button" parent="CanvasM/Backdrop" unique_id=1396912089]
+offset_left = -2.0
+offset_top = 64.0
+offset_right = 38.0
+offset_bottom = 104.0
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_kdbn0")
+
+[node name="Button47" type="Button" parent="CanvasM/Backdrop" unique_id=1806278298]
+offset_left = 39.0
+offset_top = 64.0
+offset_right = 79.0
+offset_bottom = 104.0
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_kdbn0")
+
+[node name="Button48" type="Button" parent="CanvasM/Backdrop" unique_id=524800390]
+offset_left = 80.0
+offset_top = 64.0
+offset_right = 120.0
+offset_bottom = 104.0
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_kdbn0")
+
+[node name="Button49" type="Button" parent="CanvasM/Backdrop" unique_id=1361170963]
+offset_left = 121.0
+offset_top = 64.0
+offset_right = 161.0
+offset_bottom = 104.0
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_kdbn0")
+
+[node name="Button50" type="Button" parent="CanvasM/Backdrop" unique_id=88751999]
+offset_left = 162.0
+offset_top = 64.0
+offset_right = 202.0
+offset_bottom = 104.0
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_kdbn0")
 
 [connection signal="button_down" from="Zoom/Rocket" to="." method="_on_rocket_button_down"]
 [connection signal="button_up" from="Zoom/Rocket" to="." method="_on_rocket_button_up"]
