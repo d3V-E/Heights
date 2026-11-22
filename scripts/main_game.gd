@@ -18,14 +18,14 @@ var clicksrng = {"normal" = 1000,
 				"normal3" = 10}
 var rngnum = RandomNumberGenerator.new()
 var randomevent = {"pass" = 10000,
-					"balance" = 100,}
+					"balance" = 1,}
 var eventnum = RandomNumberGenerator.new()
 var minecount = 0
 var minecorrect = 0
 var minewrong = 0
 var mine = ""
 var minecounter = {"SAFE" : 40 , 
-					"DANGER" : 10}
+					"MINE" : 10}
 var minerng = RandomNumberGenerator.new()
 
 @onready var click : TextureButton = $Zoom/Rocket
@@ -37,7 +37,8 @@ var minerng = RandomNumberGenerator.new()
 @onready var rebclose : TextureButton = $"Canvas/Rebirth Menu/Close Rebirth"
 @onready var confreb :TextureButton = $"Canvas/Rebirth Menu/Confirm"
 @onready var rebparticles:CPUParticles2D = $"Zoom/Rocket/Rebirth Particles"
-@onready var canvass = $CanvasM/Backdrop
+@onready var canvast = $CanvasM/Backdrop
+@onready var mminigame :Sprite2D = $CanvasM/Backdrop
 
 func clickchance():
 	rngnum.randomize()
@@ -104,6 +105,7 @@ func load_data():
 
 
 func _ready():
+	mminigame.visible = false
 	confreb.pivot_offset = confreb.size / 2
 	reb.visible = true
 	rebmenu.visible = false
@@ -113,7 +115,7 @@ func _ready():
 	load_data()
 	click.pivot_offset = click.size / 2
 	$Zoom/Score.text = str(score)
-	for c in canvass.get_children():
+	for c in canvast.get_children():
 		if c is Button:
 			c.pivot_offset = c.size / 2
 			c.button_down.connect(_on_any_button_down.bind(c))
@@ -154,6 +156,14 @@ func _on_rocket_button_up():
 	if zoomclik == true:
 		zoomclik = false
 	clicked = false
+	var chosen = getrandomevent()
+	if chosen == "pass":
+		pass
+	elif chosen == "balance":
+		minecorrect = 0
+		minewrong = 0
+		mminigame.visible = true
+		newround()
 
 
 
@@ -284,7 +294,12 @@ func _on_any_button_up(op: Button):
 		op.text = "MINE"
 		minewrong += 1
 	op.disabled = true
-
+	
+	if minewrong >= 5:
+		score -= float(score / 2)
+	
+	if minecorrect >= 10:
+		mminigame.visible = false
 
 func get_mines():
 	minerng.randomize()
@@ -292,7 +307,7 @@ func get_mines():
 	var te = 0
 	
 	for k in minecounter:
-		te -= minecounter[k]
+		te += minecounter[k]
 	
 	var itemlot = minerng.randi_range(1 , te)
 	
@@ -302,3 +317,23 @@ func get_mines():
 		if itemlot <= check:
 			return k
 	return "SAFE"
+
+
+func _on_autosaver_timeout():
+	emit_signal("score_changed")
+	emit_signal("multiplier_changed")
+	emit_signal("score_changed")
+	save_data()
+
+
+
+func newround():
+	minecount = 0
+	minecorrect = 0
+	minewrong = 0
+	mine = ""
+	for c in canvast.get_children():
+		if c is Button:
+			c.disabled = false
+			c.text = ""
+			c.scale = Vector2(1, 1)
