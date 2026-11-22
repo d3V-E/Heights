@@ -39,6 +39,9 @@ var minerng = RandomNumberGenerator.new()
 @onready var rebparticles:CPUParticles2D = $"Zoom/Rocket/Rebirth Particles"
 @onready var canvast = $CanvasM/Backdrop
 @onready var mminigame :Sprite2D = $CanvasM/Backdrop
+@onready var close:TextureButton = $Canvas/Shopline/Close
+@onready var shop:TextureButton = $Canvas/Shop
+
 
 func clickchance():
 	rngnum.randomize()
@@ -111,6 +114,8 @@ func _ready():
 	rebmenu.visible = false
 	rebclose.pivot_offset = rebclose.size / 2
 	reb.pivot_offset = reb.size / 2
+	shop.pivot_offset = shop.size / 2
+	close.pivot_offset = close.size / 2
 	backgroundanim.play("RESET")
 	load_data()
 	click.pivot_offset = click.size / 2
@@ -337,3 +342,39 @@ func newround():
 			c.disabled = false
 			c.text = ""
 			c.scale = Vector2(1, 1)
+
+
+
+
+
+func _on_shop_button_down():
+	var tween = get_tree().create_tween()
+	tween.tween_property(shop , "scale" , Vector2(.9 ,.9) ,.1)
+
+
+
+
+
+func _on_shop_button_up():
+	var tween = get_tree().create_tween()
+	tween.tween_property(shop , "scale" , Vector2(1 , 1), .1)
+	backgroundanim.play("SHOP")
+
+
+
+
+
+
+func _on_close_button_down():
+	var tween = get_tree().create_tween()
+	tween.tween_property(close , "scale" , Vector2(.9 ,.9), .1)
+
+
+
+
+
+
+func _on_close_button_up():
+	var tween = get_tree().create_tween()
+	tween.tween_property(close , "scale" , Vector2(1 , 1), .1)
+	backgroundanim.play_backwards("SHOP")
