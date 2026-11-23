@@ -2,6 +2,8 @@ extends Node2D
 
 
 
+var c2 = 2750
+var c1 = 300
 var score = 0
 var stage1 = false
 var stage2 = false
@@ -11,7 +13,7 @@ var zoomclik = false
 var clicked = false
 var rebirth = 0
 var multiplier = 1
-var requirement = 0
+var requirement = 10000
 var clicksrng = {"normal" = 1000,
 				"normal1" = 500,
 				"normal2" = 250,
@@ -27,7 +29,10 @@ var mine = ""
 var minecounter = {"SAFE" : 40 , 
 					"MINE" : 10}
 var minerng = RandomNumberGenerator.new()
+var persec = 0
 
+
+@onready var b1 :TextureButton = $"Canvas/Shopline/ScrollContainer/VBoxContainer/Control/ShopOption/11"
 @onready var click : TextureButton = $Zoom/Rocket
 @onready var rocketparticles : CPUParticles2D = $"Zoom/Rocket/Rocket Particles"
 @onready var backgroundanim : AnimationPlayer = $Canvas/Animation
@@ -41,6 +46,8 @@ var minerng = RandomNumberGenerator.new()
 @onready var mminigame :Sprite2D = $CanvasM/Backdrop
 @onready var close:TextureButton = $Canvas/Shopline/Close
 @onready var shop:TextureButton = $Canvas/Shop
+@onready var instruct:TextureButton = $Canvas/Instruct
+@onready var b2 :TextureButton = $"Canvas/Shopline/ScrollContainer/VBoxContainer/Control2/ShopOption/te"
 
 
 func clickchance():
@@ -82,12 +89,14 @@ const save_path = "user://userdata.savefiles"
 signal score_changed
 signal rebirth_changed
 signal multiplier_changed
+signal requirement_changed
 
 func save_data():
 	var data = {
 		"score" : score,
 		"rebirth": rebirth,
 		"multiplier": multiplier,
+		"requirement" : requirement
 	}
 	var file = FileAccess.open(save_path , FileAccess.WRITE)
 	file.store_var(data)
@@ -102,6 +111,7 @@ func load_data():
 			score = data.get("score" , 0)
 			rebirth = data.get("rebirth" , 0)
 			multiplier = data.get("multiplier" , 1)
+			requirement = data.get("requirement" , 10000)
 	else:
 		save_data()
 
@@ -116,6 +126,9 @@ func _ready():
 	reb.pivot_offset = reb.size / 2
 	shop.pivot_offset = shop.size / 2
 	close.pivot_offset = close.size / 2
+	b2.pivot_offset = b2.size / 2
+	instruct.pivot_offset = instruct.size / 2
+	b1.pivot_offset = b1.size / 2
 	backgroundanim.play("RESET")
 	load_data()
 	click.pivot_offset = click.size / 2
@@ -272,9 +285,11 @@ func rebirthtrue():
 	rebirth += 1
 	score = 0
 	multiplier = (multiplier *2)
+	requirement = requirement * 10
 	emit_signal("score_changed")
 	emit_signal("rebirth_changed")
 	emit_signal("multiplier_changed")
+	emit_signal("requirement_changed")
 	save_data()
 
 
@@ -325,9 +340,11 @@ func get_mines():
 
 
 func _on_autosaver_timeout():
+	score += persec
 	emit_signal("score_changed")
 	emit_signal("multiplier_changed")
 	emit_signal("score_changed")
+	emit_signal("requirement_changed")
 	save_data()
 
 
@@ -378,3 +395,56 @@ func _on_close_button_up():
 	var tween = get_tree().create_tween()
 	tween.tween_property(close , "scale" , Vector2(1 , 1), .1)
 	backgroundanim.play_backwards("SHOP")
+
+
+
+
+func _on_instruct_button_down():
+	var tween = get_tree().create_tween()
+	tween.tween_property(instruct , "scale" , Vector2(.9 ,.9), .1)
+
+
+
+
+
+func _on_instruct_button_up():
+	var tween = get_tree().create_tween()
+	tween.tween_property(instruct , "scale" , Vector2(1 , 1), .1)
+	get_tree().change_scene_to_file("res://scenes/instuctions.tscn")
+
+
+
+
+
+func _on__button_down():
+	var tween = get_tree().create_tween()
+	tween.tween_property(b1 , "scale" , Vector2(.9 ,.9), .1)
+
+
+
+
+
+func _on__button_up():
+	var tween = get_tree().create_tween()
+	tween.tween_property(b1 , "scale" , Vector2(1 , 1), .1)
+	if score >= c1:
+		score -= c1
+		persec += 1
+		c1 += 100
+		$"Canvas/Shopline/ScrollContainer/VBoxContainer/Control/ShopOption/1".text = "+ 1 score per second
+Cost = " + str(c1)
+
+
+
+
+func _on_te_button_down():
+	var tween = get_tree().create_tween()
+	tween.tween_property(b2 , "scale", Vector2(.9 ,.9) , .1)
+
+
+
+
+
+func _on_te_button_up():
+	var tween = get_tree().create_tween()
+	tween.tween_property(b2 , "scale" , Vector2(1 , 1) ,.1)
